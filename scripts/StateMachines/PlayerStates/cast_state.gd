@@ -59,7 +59,6 @@ func update_animation(direction: Vector2):
 
 
 func _on_animated_sprite_2d_animation_finished():
-	print(animated_sprite_2d.animation)
 	if animated_sprite_2d.animation.begins_with("cast") and state_machine.current_state.name == "CastState":
 		$"../IdleState".dir = dir
 		state_machine.change_state(state_machine.get_node("IdleState"))

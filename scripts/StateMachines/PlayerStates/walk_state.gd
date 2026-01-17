@@ -25,6 +25,11 @@ func physics_update(delta):
 		$"../CastState".dir = dir
 		state_machine.change_state(state_machine.get_node("CastState"))
 		return
+		
+	if Input.is_action_just_pressed("slide"):
+		$"../SlideState".dir = dir
+		state_machine.change_state(state_machine.get_node("SlideState"))
+		return
 
 	dir = dir.normalized()
 	
