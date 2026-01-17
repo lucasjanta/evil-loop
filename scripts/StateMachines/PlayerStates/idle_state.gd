@@ -25,6 +25,10 @@ func physics_update(delta):
 	if Input.is_action_just_pressed("mouse_cast"):
 		$"../CastState".dir = last_dir
 		state_machine.change_state(state_machine.get_node("CastState"))
+		
+	if Input.is_action_just_pressed("basic_attack"):
+		$"../SwordAttack1State".dir = last_dir
+		state_machine.change_state(state_machine.get_node("SwordAttack1State"))
 
 # Function to update the animation and sprite direction
 func update_animation(direction: Vector2):
