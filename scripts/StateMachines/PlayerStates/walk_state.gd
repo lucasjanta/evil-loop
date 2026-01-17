@@ -30,6 +30,11 @@ func physics_update(delta):
 		$"../SlideState".dir = dir
 		state_machine.change_state(state_machine.get_node("SlideState"))
 		return
+		
+	if Input.is_action_just_pressed("basic_attack"):
+		$"../SwordAttack1State".dir = dir
+		state_machine.change_state(state_machine.get_node("SwordAttack1State"))
+		return
 
 	dir = dir.normalized()
 	
