@@ -9,9 +9,6 @@ func enter():
 	state_machine = get_parent()
 	player.velocity = Vector2.ZERO
 	update_animation(dir)
-# Update the animation
-#func update(delta):
-	#
 
 # Change the states in physics update
 func physics_update(delta):
