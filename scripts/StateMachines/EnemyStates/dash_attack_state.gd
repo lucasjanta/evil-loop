@@ -1,0 +1,61 @@
+extends State
+
+@onready var animated_sprite_2d = $"../../AnimatedSprite2D"
+@onready var dash_hit_collision = $"../../AttackAreas/DashHitArea/DashHitCollision"
+@onready var dash_second_hit_collision = $"../../AttackAreas/DashSecondHitArea/DashSecondHitCollision"
+@onready var attack_areas = $"../../AttackAreas"
+@onready var dash_marker = $"../../AttackAreas/dash_marker"
+
+
+var dir := Vector2(0.0, 0.0)
+var last_dir : Vector2
+
+# Function to initialize the variables correctly
+func enter():
+	player = get_parent().get_parent()
+	state_machine = get_parent()
+	dir = (player.player_ref.global_position - player.global_position).normalized()
+	player.velocity = (player.chase_speed * 2) * dir
+	update_animation(dir)
+	last_dir = dir
+	
+
+func physics_update(delta):
+	
+	player.move_and_slide()
+	match animated_sprite_2d.frame:
+		1:
+			dash_hit_collision.disabled = false
+		4:
+			dash_hit_collision.disabled = true
+		5:
+			dash_second_hit_collision.disabled = false
+		7:
+			dash_second_hit_collision.disabled = true
+
+# Function to update the animation and sprite direction
+func update_animation(direction: Vector2):
+	var anim := "AttackCombo"
+
+	if direction == Vector2.ZERO:
+		animated_sprite_2d.play(anim)
+		return
+
+	direction = direction.normalized()
+
+	if direction.x > 0:
+		attack_areas.rotation_degrees = 0
+		animated_sprite_2d.flip_h = false
+		animated_sprite_2d.offset.x = 32
+	else:
+		attack_areas.rotation_degrees = 180
+		animated_sprite_2d.flip_h = true
+		animated_sprite_2d.offset.x = -32
+
+	animated_sprite_2d.play(anim)
+
+func _on_animated_sprite_2d_animation_finished():
+	if animated_sprite_2d.animation == "AttackCombo" and state_machine.current_state.name == "DashAttackState":
+		player.global_position = dash_marker.global_position
+		player.can_dash = false
+		state_machine.change_state(state_machine.get_node("WalkState"))

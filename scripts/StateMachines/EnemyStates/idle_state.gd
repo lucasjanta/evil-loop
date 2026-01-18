@@ -50,5 +50,5 @@ func random_side():
 	update_animation(dir)
 	change_side_timer = 2.5
 	side_changes += 1
-	if side_changes >= 3:
+	if side_changes >= 2:
 		state_machine.change_state(state_machine.get_node("WalkState"))
