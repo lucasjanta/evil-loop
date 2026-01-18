@@ -4427,7 +4427,6 @@ radius = 8.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_tuyoq")
-speed = 75.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q60f8")

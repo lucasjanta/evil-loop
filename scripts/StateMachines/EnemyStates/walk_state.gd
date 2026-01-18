@@ -3,7 +3,6 @@ extends State
 @onready var animated_sprite_2d = $"../../AnimatedSprite2D"
 var dir := Vector2(0.0, 0.0)
 var last_dir : Vector2
-var side_changes := 0
 
 @export var change_side_timer := 2.5
 
@@ -11,10 +10,9 @@ var side_changes := 0
 func enter():
 	player = get_parent().get_parent()
 	state_machine = get_parent()
-	player.velocity = Vector2.ZERO
+	random_side()
 	update_animation(dir)
 	last_dir = dir
-	side_changes = 0
 	
 
 func physics_update(delta):
@@ -22,13 +20,19 @@ func physics_update(delta):
 	if change_side_timer <= 0.0:
 		random_side()
 	
+	if player.global_position.x > 300.0 or player.global_position.x < 16.0:
+		random_side()
+	if player.global_position.y > 176.0 or player.global_position.y < 25.0:
+		random_side()
+	player.velocity = player.walk_speed * dir
+	player.move_and_slide()
 	
 	#if dir != Vector2.ZERO:
 		#state_machine.change_state(state_machine.get_node("WalkState"))
 
 # Function to update the animation and sprite direction
 func update_animation(direction: Vector2):
-	var anim := "Idle"
+	var anim := "Walk"
 
 	if direction == Vector2.ZERO:
 		animated_sprite_2d.play(anim)
@@ -46,9 +50,6 @@ func update_animation(direction: Vector2):
 	animated_sprite_2d.play(anim)
 
 func random_side():
-	dir.x = [-1,1].pick_random()
+	dir = Vector2(randf_range(-1,1), randf_range(-1,1))
 	update_animation(dir)
 	change_side_timer = 2.5
-	side_changes += 1
-	if side_changes >= 3:
-		state_machine.change_state(state_machine.get_node("WalkState"))

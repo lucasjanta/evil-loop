@@ -1,7 +1,18 @@
-[gd_scene load_steps=64 format=4 uid="uid://c00u1huj053gh"]
+[gd_scene load_steps=69 format=4 uid="uid://c00u1huj053gh"]
 
 [ext_resource type="Script" uid="uid://dgf6or3danbir" path="res://scripts/StateMachines/state_machine.gd" id="1_5xr4n"]
+[ext_resource type="Script" uid="uid://davdffvvmail0" path="res://scripts/enemy_boss.gd" id="1_bdlgx"]
 [ext_resource type="Script" uid="uid://b8aswhtefptof" path="res://scripts/StateMachines/EnemyStates/idle_state.gd" id="2_xu5hf"]
+[ext_resource type="Script" uid="uid://hlet2u5br254" path="res://scripts/StateMachines/EnemyStates/walk_state.gd" id="4_lujot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xu5hf"]
+radius = 116.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lq6pu"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bdlgx"]
+radius = 87.005745
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_1jpik"]
 _data = PackedByteArray("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")
@@ -460,7 +471,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_obmup")
 }],
-"loop": false,
+"loop": true,
 "name": &"Walk",
 "speed": 10.0
 }]
@@ -469,11 +480,30 @@ animations = [{
 radius = 6.0
 
 [node name="enemy_boss" type="CharacterBody2D"]
+script = ExtResource("1_bdlgx")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_xu5hf")
+debug_color = Color(0.52941674, 0.5605992, 0.32296398, 0.41960785)
+
+[node name="MelleeAttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MelleeAttackArea"]
+shape = SubResource("CircleShape2D_lq6pu")
+debug_color = Color(0.9372549, 0, 0.0627451, 0.41960785)
+
+[node name="DashAttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashAttackArea"]
+shape = SubResource("CircleShape2D_bdlgx")
+debug_color = Color(0.5781152, 0.384924, 1, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qygbk")
-animation = &"AttackCombo"
+animation = &"Walk"
 offset = Vector2(32, -8)
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
@@ -503,3 +533,6 @@ initial_state_path = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("2_xu5hf")
+
+[node name="WalkState" type="Node" parent="StateMachine"]
+script = ExtResource("4_lujot")
