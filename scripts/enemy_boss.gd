@@ -11,6 +11,8 @@ var can_dash := false
 var atk_timer := 2.0
 var dash_atk_timer := 4.0
 
+var hit_dmg := 0.0
+
 func _physics_process(delta):
 	if atk_timer > 0.0 and !can_attack:
 		atk_timer -= delta
@@ -61,3 +63,9 @@ func _on_dash_attack_area_body_entered(body):
 func _on_dash_attack_area_body_exited(body):
 	if body is Player:
 		on_dash_atk_range = false
+
+
+func _on_base_attack_hit_area_area_entered(area):
+	if area.name == "hurtArea":
+		print("acertou o player")
+		area.get_parent().take_dmg(hit_dmg)

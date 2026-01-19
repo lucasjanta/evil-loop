@@ -599,3 +599,4 @@ position = Vector2(77, 0)
 [connection signal="body_exited" from="DashAttackArea" to="." method="_on_dash_attack_area_body_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/MelleeAttackState" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/DashAttackState" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="AttackAreas/BaseAttackHitArea" to="." method="_on_base_attack_hit_area_area_entered"]

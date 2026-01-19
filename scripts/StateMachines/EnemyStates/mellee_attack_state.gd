@@ -20,10 +20,14 @@ func enter():
 func physics_update(delta):
 	player.move_and_slide()
 	match animated_sprite_2d.frame:
+		2:
+			player.hit_dmg = 30.0
 		3:
 			base_hit_collision.disabled = false
 		5:
 			base_hit_collision.disabled = true
+		6:
+			player.hit_dmg = 20.0
 		7:
 			base_hit_collision.disabled = false
 		10:

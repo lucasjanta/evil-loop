@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://camifqxek0dfi"]
+[gd_scene load_steps=14 format=4 uid="uid://camifqxek0dfi"]
 
 [ext_resource type="Texture2D" uid="uid://dyo81txkxihuc" path="res://assets/tilesets/mainlevbuild.png" id="1_ijqxp"]
 [ext_resource type="Texture2D" uid="uid://bjy6x6uhwbwxm" path="res://assets/tilesets/decorative.png" id="2_bbmda"]
 [ext_resource type="PackedScene" uid="uid://bqou40f5fy7oq" path="res://scenes/player.tscn" id="3_bbmda"]
 [ext_resource type="PackedScene" uid="uid://c00u1huj053gh" path="res://scenes/enemy_boss.tscn" id="4_8q0yx"]
+[ext_resource type="Texture2D" uid="uid://xuq1al77a466" path="res://assets/ui/life_bar/under.png" id="5_o3ae3"]
+[ext_resource type="Texture2D" uid="uid://dhqmiyleqe45s" path="res://assets/ui/life_bar/over.png" id="6_866t6"]
+[ext_resource type="Texture2D" uid="uid://ddeelyhhn6qu7" path="res://assets/ui/life_bar/progress.png" id="7_l3pbj"]
+[ext_resource type="Texture2D" uid="uid://vjn2hbkqsxhj" path="res://assets/ui/stamina_bar/under.png" id="8_grgp0"]
+[ext_resource type="Texture2D" uid="uid://d0wwu62lqn8d" path="res://assets/ui/stamina_bar/over.png" id="9_pjcmx"]
+[ext_resource type="Texture2D" uid="uid://c1ssy05y6ti44" path="res://assets/ui/stamina_bar/progress.png" id="10_bjp2u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8q0yx"]
 texture = ExtResource("1_ijqxp")
@@ -1467,3 +1473,37 @@ tile_map_data = PackedByteArray("AAAUAAAAAAARAAQAAAAUAAEAAAARAAUAAAAUAAIAAAARAAY
 tile_set = SubResource("TileSet_lyfqi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -32.0
+offset_right = 82.0
+offset_bottom = -16.0
+grow_vertical = 0
+texture_under = ExtResource("5_o3ae3")
+texture_over = ExtResource("6_866t6")
+texture_progress = ExtResource("7_l3pbj")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 13.0
+offset_right = 83.0
+offset_bottom = 26.0
+texture_under = ExtResource("8_grgp0")
+texture_over = ExtResource("9_pjcmx")
+texture_progress = ExtResource("10_bjp2u")
